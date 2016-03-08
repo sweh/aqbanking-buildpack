@@ -1,0 +1,191 @@
+
+This is Gwenhywfar, a multi-platform helper library for networking and
+security applications and libraries. 
+It is used by 
+ - Libchipcard (http://www.libchipcard.de), 
+ - OpenHBCI2 (http://www.openhbci.de), 
+ - Simthetic, the simulation tool (http://simthetic.sourceforge.net)
+ - AqBanking/AqHBCI (http://www.aqbanking.de/).
+ - and others by using one of the projects above
+
+
+
+Features
+========
+
+This library is written in C, and it follows the object-oriented
+programming paradigm for most of its parts.  The header files can
+directly be used from C++, too.
+
+Gwenhywfar includes the following features:
+
+- Basic Data types for binary buffers, ring buffers, linked lists, 
+  error objects, string lists (src/base/), buffered IO operations (src/io/)
+
+- Macros for typesafe list management
+
+- OS abstraction functions for directory and Internet address handling
+  and library loading (src/os/)
+
+- Networking functions which allow to manage many connections to be used
+  economically even in single threaded applications
+
+- High-level functions for parsing files with a simplified "XML-like"
+  format and accessing them like a hierarchical database (src/parser/)
+  It is able to process valid XML files, too.
+
+- High-level cryptographic functions on top of OpenSSL functionality
+  (src/crypt/)
+
+- Support for interprocess communication (HTTP on top of SSL or plain
+  TCP/UDP sockets, with or without certificates for clients and/or servers)
+
+- A tool to generate simple data containers from XML files. It automatically
+  generates getters, setters, constructor, destructor, deep-copy function,
+  usage counter handling, modification tracking, functions for reading from 
+  and writing to GWEN_DBs (used by AqBanking to create the transaction class)
+
+
+
+Requirements
+============
+
+- GnuTLS >= 1.4 (>=2.0.1 recommended)
+- libgcrypt (>=1.2.0)
+
+
+
+Platforms
+=========
+
+Gwenhywfar is being developed on Linux. But the following platforms are also
+supported:
+
+- Windows (98, NT and newer; for using this library from Microsoft
+  Visual Studio C please see the explanations in test/README.MSVC)
+
+- FreeBSD   
+- Linux     (i386, amd64, alpha)
+- Mac OS-X  
+- NetBSD    (untested, but most likely to work)
+- OpenBSD   (untested, but most likely to work)
+- SunOS 5.9 (compiles, untested, but most likely to work)
+
+On Windows, an .exe setup program is provided, created with the Inno
+Setup Compiler http://www.jrsoftware.org/isdl.php .
+
+
+Architectures
+=============
+
+According to Debian Gwen runs on the following platforms:
+- alpha
+- amd64
+- arm
+- hppa
+- i386
+- ia64
+- m68k
+- mips
+- mipsel
+- powerpc
+- s390
+- sparc
+
+
+
+Environment Variables
+=====================
+
+"GWEN_MEMORY_DEBUG"
+-------------------
+
+This integer variable tells gwen whether (and how) to print the memory
+debugger statistic. This only works for sources compiled with the defined
+macro GWEN_MEMORY_DEBUG. 
+- "0" shows ALL listed objects
+- "1" only shows those objects whose count is not 0
+
+
+"GWEN_SSL_DEBUG"
+----------------
+
+If this environment variable exists the SSL code will append data received
+via an SSL connection to "/tmp/read.bin" and append data sent via an SSL
+connection to /tmp/written.bin".
+
+
+"GWEN_TLS_CIPHER_PRIORITIES"
+--------------------------
+
+If this environment variable is set, the SSL code will initialize the GnuTLS
+library with the provided cipher priority list. In case forced SSLv3 is
+enabled, this cipher priority list is prefixed with the string "+VERS-SSL3.0:".
+If this environment variable is unset, the following cipher priority list is
+being used: SECURE256:-ARCFOUR-128:-AES-128-CBC:-CAMELLIA-128-CBC:-3DES-CBC
+
+For the exact format of the cipher priority list, please consult the GnuTLS
+documentation, section "Priority strings":
+http://gnutls.org/manual/html_node/Priority-Strings.html
+
+
+Registry Keys
+=============
+
+On Windows platforms Gwen uses some keys below HKEY_CURRENT_USER
+to store information about file/folder locations. The keys are set
+in the Inno Setup file gwenhywfar.iss, so please check the
+[Registry] section in gwenyhwfar.iss.in for the authoritative
+source of available registry keys.
+
+"Software\\Gwenhywfar\\Paths\\dbio-plugins"
+-------------------------------------------
+Complete path to the folder containing GWENs DBIO plugins.
+(and some more keys. See gwenhywfar.iss.in)
+
+
+Documentation
+=============
+
+The documentation can be found in the header files. Many header 
+files already include extensive comments in doxygen-format (however some 
+don't).
+For a more or less complete API documentation use the command
+"make srcdoc"
+You will need the tool doxygen for this command to run.
+
+
+
+Contact
+=======
+
+For questions about this library please ask on the mailing list of the
+OpenHBCI project aqbanking-devel (subscriber-only, please subscribe
+on http://lists.sourceforge.net/lists/listinfo/aqbanking-devel),
+since this is where the author(s) hang out. 
+
+
+
+Authors
+=======
+
+This library is being written by and is being maintained by Martin
+Preuss <martin@libchipcard.de>. 
+
+I also wish to thank Christian Stimming <stimming@tuhh.de> for his
+contributions and for adding MSVC support to Gwen (thus making Gwen completely
+available on Windows).
+
+
+
+Name
+====
+
+The name of this library was chosen to honour a very special person ;-)
+(that should suffice as an explanation)
+
+
+
+Hamburg, Germany 2007/10/31
+
+

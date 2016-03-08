@@ -1,0 +1,415 @@
+
+===========================================================================
+                    gwenhywfar-3.7.0 (2009/01/22)
+===========================================================================
+
+This release adds HTTP proxy support. Some bugs have been fixed and a tree
+template module (similar to GWEN_LIST but for trees) has been added.
+
+
+===========================================================================
+                    gwenhywfar-3.5.2 (2008/11/08)
+===========================================================================
+
+This release fixes a bug. It features improved error message (now 
+indicating whether "Force SSLv3" should be enabled) and FreeBSD build
+fixes.
+
+
+===========================================================================
+                    gwenhywfar-3.4.1 (2008/08/16)
+===========================================================================
+
+This release fixes some problems with HTTP(s) connections and adds the
+command "setkey" to gct-tool (allowing to set number and version of a
+key).
+
+
+===========================================================================
+                    gwenhywfar-3.4.0 (2008/08/11)
+===========================================================================
+
+This release fixes some problems with AqHBCI, features improved handling of
+TLS-connections, implements basic thread sync mechanisms (MUTEX, SEMAPHORE)
+and provides improved support for WIN32 platforms.
+Work on a configuration manager framework (as will be needed by AqBanking
+soon) has begun.
+
+
+===========================================================================
+                    gwenhywfar-3.3.5 (2008/07/08)
+===========================================================================
+
+This release introduce a configure option for the buffer size default hard 
+limit.
+
+
+===========================================================================
+                    gwenhywfar-3.3.4 (2008/06/11)
+===========================================================================
+
+This release fixes a bug in the CSV exporter. It also adds the gct-tool
+command "changepin".
+
+
+===========================================================================
+                    gwenhywfar-3.3.3 (2008/06/06)
+===========================================================================
+
+This release fixes some bugs. Support for non-interactive use of GWEN_GUI
+has been improved.
+
+
+===========================================================================
+                    gwenhywfar-3.3.2 (2008/05/27)
+===========================================================================
+
+This release fixes a bug in HTTP chunked download mode.
+
+
+===========================================================================
+                    gwenhywfar-3.3.1 (2008/04/25)
+===========================================================================
+
+This is a bugfix release.
+
+
+===========================================================================
+                    gwenhywfar-3.3.0 (2008/04/22)
+===========================================================================
+
+This release fixes some build system bugs and improves support for static
+linking
+
+
+===========================================================================
+                    gwenhywfar-3.2.0 (2008/03/16)
+===========================================================================
+
+This release fixes some important bugs and adds some crypto functions. Pin
+caching and SSL certificate handling is now available in cgui.{c,h}.
+
+
+===========================================================================
+                    gwenhywfar-3.1.1 (2008/02/10)
+===========================================================================
+
+This release fixes a bug in the OpenHBCI keyfile plugin and decreases the
+verbosity of the message engine.
+
+
+===========================================================================
+                    gwenhywfar-3.1.0 (2008/01/25)
+===========================================================================
+
+This release fixes some important bugs.
+
+
+===========================================================================
+                    gwenhywfar-3.0.1 (2007/12/07)
+===========================================================================
+
+This release fixes a bug in GWEN_Buffer_ReplaceBytes().
+
+
+===========================================================================
+                    gwenhywfar-3.0.0 (2007/11/22)
+===========================================================================
+
+This is the first stable release of Gwenhywfar which no longer links against
+OpenSSL. OpenSSL is still used for one of the tools, but the library does not
+link against it.
+
+
+===========================================================================
+                    gwenhywfar-2.9.15rc6 (2007/11/17)
+===========================================================================
+
+This release simplifies WIN32 installations.
+
+
+===========================================================================
+                    gwenhywfar-2.9.14rc5 (2007/11/16)
+===========================================================================
+
+This release improves the TLS server code. It now allows Libchipcard4 to be
+used in slave mode.
+
+
+===========================================================================
+                    gwenhywfar-2.9.13rc4 (2007/11/14)
+===========================================================================
+
+This release improves the build system and adds German translations for
+formerly untranslated strings.
+
+
+===========================================================================
+                    gwenhywfar-2.9.12rc3 (2007/11/13)
+===========================================================================
+
+This release fixes a problem with some TLS servers.
+
+
+===========================================================================
+                    gwenhywfar-2.9.11rc2 (2007/11/11)
+===========================================================================
+
+This version fixes some bugs and problems.
+
+
+===========================================================================
+                    gwenhywfar-2.9.10rc1 (2007/11/10)
+===========================================================================
+
+This release fixes a bug in GWEN_InetSocket_Select().
+
+
+===========================================================================
+                    gwenhywfar-2.9.9beta (2007/11/07)
+===========================================================================
+
+This is chiefly a bugfix release.
+
+
+===========================================================================
+                    gwenhywfar-2.9.8beta (2007/11/03)
+===========================================================================
+
+This release fixes some bugs. It also adds the command "setsignseq" to
+the gct-tool.
+
+
+===========================================================================
+                    gwenhywfar-2.9.7beta (2007/10/31)
+===========================================================================
+
+This release fixes some bugs with the OpenHBCI keyfile module.
+
+
+===========================================================================
+                    gwenhywfar-2.9.6beta (2007/10/30)
+===========================================================================
+
+This release fixes a few bugs. The gct-tool is now able to generate keys.
+
+
+===========================================================================
+                    gwenhywfar-2.9.5beta (2007/10/28)
+===========================================================================
+
+This release adds the command "update" to the gct-tool. This allows to 
+convert ancient OpenHBCI keyfiles to a new format which can be used by
+AqHBCI without the help of OpenSSL.
+Gwen still DOES NOT link against OpenSSL, it's only the gct-tool which does.
+
+
+===========================================================================
+                    gwenhywfar-2.9.4beta (2007/10/27)
+===========================================================================
+
+This release very much improves handling of TLS connections, fixes some 
+bugs and adds a local installation mode. Some modules which are no longer
+needed have been removed.
+
+
+===========================================================================
+                    gwenhywfar-2.9.3beta (2007/10/24)
+===========================================================================
+
+This is the first release which no longer requires OpenSSL. The project
+now uses Libgcrypt and GnuTLS for cryptographic functions.
+This is also the first version of the new generation which works on WIN32 
+platforms. It no longer requires to make assumptions about where it has
+been installed on WIN32, it finds all plugins relative to the location of
+the calling executable.
+
+
+===========================================================================
+                    gwenhywfar-2.9.2beta (2007/09/11)
+===========================================================================
+
+This release introduces a new request based io layer which replaces the
+former netlayer and buffered io modules. This release uses Libgcrypt and
+GNU-TLS instead of OpenSSL for new rewritten cryptographic module.
+The now deprecated netlayer and the old crypto modules are still shipped
+with this release because currently AqBanking still needs them. However,
+the next stable release wil not.
+
+
+===========================================================================
+                    gwenhywfar-2.9.1beta (2007/05/14)
+===========================================================================
+
+This release fixes a major bug in the console GUI code and a minor one 
+in GWEN_Logger.
+
+
+===========================================================================
+                    gwenhywfar-2.9.0beta (2007/04/03)
+===========================================================================
+
+This is the first release of Gwenhywfar3. The main changes concern the new
+module GWEN_GUI. This is used by Gwenhywfar itself and depending projects for 
+user interaction. The GWEN_DB code has been partly rewritten for speed
+optimisation. The names of types, macros and functions has been cleaned up to
+comply to the STYLES document. Some bugs have been fixed in the process.
+
+
+===========================================================================
+                    gwenhywfar-2.5.0 (2006/12/25)
+===========================================================================
+
+This release decreases the verbosity and makes gwenhywfar completely 
+relocatable using binreloc.
+
+
+===========================================================================
+                    gwenhywfar-2.4.1 (2006/09/26)
+===========================================================================
+
+This release fixes some bugs, removes debugging messages and cleans up the
+API (longtime deprecated functions have been removed). Callbacks functions
+used widely in Gwenhywfar have been adapted to work on Windows as well.
+
+
+===========================================================================
+                    gwenhywfar-2.4.0 (2006/08/25)
+===========================================================================
+
+This version adds a simple signal/slot framework and fixes some bugs.
+
+
+===========================================================================
+                    gwenhywfar-2.3.1 (2006/07/13)
+===========================================================================
+
+This release adds GWEN_DBIO plugin which writes GWEN_DB's as XML files.
+
+
+===========================================================================
+                    gwenhywfar-2.3.0 (2006/06/15)
+===========================================================================
+
+This release fixes some bugs and introduces a new module for fast lookup
+of objects via integer ids. It also provides a storage module to be used
+by my next projects.
+
+
+===========================================================================
+                    gwenhywfar-2.2.0 (2006/04/12)
+===========================================================================
+
+This release includes a fix for SSL problems on MacOSX, introduces user and
+password fields to GWEN_URL, adds a GWEN_DBIO plugin for RFC822 headers (as
+used by AqMail) and adds some signedness fixes.
+
+
+===========================================================================
+                    gwenhywfar-2.1.1 (2006/03/26)
+===========================================================================
+
+This is just a maintenance release which fixes some minor bugs and compiles
+on sparc-solaris and amd64 with less warnings.
+
+
+===========================================================================
+                    gwenhywfar-2.1.0 (2006/03/20)
+===========================================================================
+
+This release fixes some bugs and very much improves the internal list code
+which results in speedup of XML file reading by factor 5-6.
+
+
+===========================================================================
+                    gwenhywfar-2.0.0 (2006/02/27)
+===========================================================================
+
+This release fixes the spurious signature error encountered with AqHBCI and
+improves the API documentation.
+
+
+===========================================================================
+                    gwenhywfar-1.99.7 (2006/02/06)
+===========================================================================
+
+The CryptToken framework now handles up to six keys per user, some memory
+leaks and some minor bugs have been fixed.
+
+
+===========================================================================
+                    gwenhywfar-1.99.6 (2006/01/30)
+===========================================================================
+
+The OpenHBCI CryptToken now reports a bad pin to the application (i.e.
+AqBanking is now able to intercept bad pins from these CryptTokens as well).
+
+
+===========================================================================
+                    gwenhywfar-1.99.5 (2006/01/26)
+===========================================================================
+
+This release fixes some bugs in HTTP code and working with crypt tokens is
+now safer.
+
+
+===========================================================================
+                    gwenhywfar-1.99.4 (2006/01/17)
+===========================================================================
+
+This release fixes some bugs in the build system (especially regarding
+GCC's new visibility feature).
+
+
+===========================================================================
+                    gwenhywfar-1.99.3 (2006/01/11)
+===========================================================================
+
+This release fixes some minor bugs and makes use of GCCs visibility features
+(thus removing about 700 symbols from the shared library).
+
+
+===========================================================================
+                    gwenhywfar-1.99.2 (2005/12/15)
+===========================================================================
+
+This release fixes some problems with the network code and Gnucash.
+
+
+===========================================================================
+                    gwenhywfar-1.99.1 (2005/12/01)
+===========================================================================
+
+This release chiefly fixes some bugs in network and XML code. It also prepares
+Gwenhywfar to be used in 64 bit environments.
+
+
+===========================================================================
+                    gwenhywfar-1.99.0beta (2005/11/22)
+===========================================================================
+
+This is the first release of the gwen2 series. It features a complete rewrite
+of the network code which fixes problems with some HBCI servers.
+Only the latest version of AqBanking works with this version of gwen.
+
+
+===========================================================================
+                    gwenhywfar-1.19.0 (2005/10/22)
+===========================================================================
+
+The changes in this release are as follows:
+Some problems in GWEN_CryptToken when keys smaller than 96 bytes are used
+were fixed (this allows AqBanking/AqHBCI to work with some banks again!).
+This version also fixes some bugs thus making network-timeout problems less
+likely to occurr.
+A request wrapper around existing IPC code was added.
+
+
+===========================================================================
+                    gwenhywfar-1.15.0 (2005/08/11)
+===========================================================================
+
+This release fixes some important bugs, enables the crypttoken code (used by
+AqHBCI), adds the tool gct-tool for admimistration of crypttoken, adds
+blowfish encryption, improves the waitcallback code and compiles warningless
+with gcc4.

@@ -1,0 +1,645 @@
+------------------------------------------------------------------
+2014-12-29 07:54:55 +0100 Elias Oltmanns
+gui: Restore compilation without libiconv.
+
+------------------------------------------------------------------
+2014-12-28 16:20:58 +0100 Elias Oltmanns
+gui: Set up charset conversion according to current locale even on Windows
+This change is supposed to make locale-aware charset conversion more
+portable. In environments lacking the appropriate POSIX interface like
+Windows we rely on the capabilities of GNU libiconv.
+
+------------------------------------------------------------------
+2014-12-15 22:25:20 +0100 Christian Stimming
+Add build directives for travis-ci.org continuous integration testing
+
+------------------------------------------------------------------
+2014-12-15 22:48:55 +0100 Christian Stimming
+Bugfix from compiler warnings: Use the correct pointer variable.
+
+------------------------------------------------------------------
+2014-12-15 22:48:42 +0100 Christian Stimming
+Bugfix from compiler warnings: pos variable might be -1, so it must not be unsigned.
+
+------------------------------------------------------------------
+2014-12-15 22:48:21 +0100 Christian Stimming
+Bugfixes from compiler warnings: Should have been bit operations, not logical operators.
+
+------------------------------------------------------------------
+2014-12-15 22:49:34 +0100 Christian Stimming
+Avoid compiler warnings (clang): Remove / deactivate unused functions / variables.
+
+------------------------------------------------------------------
+2014-12-14 22:15:15 +0100 Christian Stimming
+Fix crash in GWEN_Gui_SetCharSet (gnucash bugzilla #741161) that was calling iconv_close on an invalid descriptor.
+Fixes the crash introduced in r2297 / f12fd6e1f in April 2014.
+
+------------------------------------------------------------------
+2014-11-02 17:00:41 +0100 Martin Preuss
+Added functions GWEN_Param_List_GetByName() and GWEN_Param_Tree_GetByName().
+
+------------------------------------------------------------------
+2014-10-12 15:17:11 +0200 Martin Preuss
+Added .gitignore.
+
+------------------------------------------------------------------
+2014-10-12 15:12:22 +0200 Martin Preuss
+Merge branch 'master' of https://git.aqbanking.de/git/gwenhywfar
+
+------------------------------------------------------------------
+2014-10-06 21:52:22 +0200 Christian Stimming
+Re-indentation of source code to get a unified look of the source.
+This was done using astyle-2.03 with the following command:
+
+  astyle --style=java --indent=spaces=2 --break-closing-brackets --keep-one-line-blocks --suffix=none --recursive 'src/*.h' 'src/*.c' 'gui/*.h*' 'gui/*.c*'
+
+(The astyle options were carefully chosen to match the
+vast majority of the source code. Nevertheless quite some
+of the files have a mixed indentation style, which is
+now unified.)
+
+------------------------------------------------------------------
+2014-09-28 00:03:51 +0200 Christian Stimming
+Make GWEN_Error_SimpleToString function available in public interface.
+This function is merely a GWEN_Error -> string converter and hence useful
+in itself. No extra buffers needed, no extra texts added.
+
+------------------------------------------------------------------
+2014-09-27 23:56:47 +0200 Christian Stimming
+Fix compiler warnings/errors: "Variable defined but not used"
+
+------------------------------------------------------------------
+2014-09-25 21:14:57 +0200 Christian Stimming
+Minor error message improvements.
+
+------------------------------------------------------------------
+2014-09-17 22:20:11 +0200 Martin Preuss
+Merge branch 'master' of https://git.aqbanking.de/git/gwenhywfar
+
+------------------------------------------------------------------
+2014-09-17 22:18:55 +0200 Martin Preuss
+Fixed a bug with double deallocations in generated *_copy() functions.
+
+------------------------------------------------------------------
+2014-09-17 22:18:25 +0200 Martin Preuss
+Provide generated files for GWEN_PARAM.
+GWEN_PARAM is provided using typemaker2, so in order to make the code
+compilable even without typemaker2 already being built we provide the
+generated files here as well.
+
+------------------------------------------------------------------
+2014-09-17 22:17:22 +0200 Martin Preuss
+Added class GWEN_PARAM.
+This is used at least by AqRadBase, and probably by my other projects
+as well. It can be used to provide descriptions for settings and a framework
+to manage those settings.
+
+AqRadBase will use it to manage the settings of ADCM_CONVERTER and
+ADCM_OPERATOR classes. Those settings can then be provided in a generic
+manner.
+
+------------------------------------------------------------------
+2014-09-15 22:01:45 +0200 Christian Stimming
+Add configure check for sufficiently new gnutls as otherwise this won't compile.
+
+------------------------------------------------------------------
+2014-08-29 21:04:34 +0200 Christian Stimming
+Add minor entry to gitignore (and test git access)
+
+------------------------------------------------------------------
+2014-08-04 22:47:49 +0200 Martin Preuss
+Generic Parser: Added functions to write a parser element tree to XML.
+This is an essential function for later use in AqBanking because it will
+be used to generate the basic framework of a format definition from an
+XML file.
+
+------------------------------------------------------------------
+2014-07-25 23:42:21 +0200 Martin Preuss
+More work on generic parser.
+
+------------------------------------------------------------------
+2014-07-11 23:12:10 +0000 martin
+MultiCache: Added missing counter handling.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2338 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-07-08 18:30:21 +0000 martin
+Removed references to new g_parser from gwentest.c
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2337 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-07-08 12:43:31 +0000 martin
+Fixed version string creation.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2336 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-07-08 12:43:27 +0000 martin
+Added .gitignore entries.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2335 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-07-08 12:32:53 +0000 martin
+Added CMake package configuration files
+May not work on Mac OSX or Windows because library extensision .so is
+hard coded.
+
+From: Christian Dávid <christian-david@web.de>
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2334 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-07-04 12:33:12 +0000 martin
+Export a function which I need in AqRadBase.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2333 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-07-03 11:40:36 +0000 martin
+Fixed my latest changes.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2332 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-07-03 11:40:29 +0000 martin
+Removed work-in-progress from normal compiling.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2331 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-07-03 11:40:23 +0000 martin
+Added built files to EXTRA_DIST.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2330 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-07-03 11:32:47 +0000 martin
+Fix 3rsa test.
+From: Elias Oltmanns <eo@nebensachen.de>
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2329 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-07-03 11:32:40 +0000 martin
+Only generate RSA keys whose modulus length in bits is a multiple of 8
+According to the documentation of Libgcrypt, the length in bits
+specified when generating key pairs should always be a multiple of 8.
+Hence, the usage of GWEN_Crypt_KeyRsa_GeneratePair2() is deprecated.
+
+From: Elias Oltmanns <eo@nebensachen.de>
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2328 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-07-03 11:32:32 +0000 martin
+Be careful about sign issues when cropping buffers.
+From: Elias Oltmanns <eo@nebensachen.de>
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2327 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-07-03 11:32:25 +0000 martin
+Fix potential overrun in GWEN_Buffer_RemoveRoom()
+Also reported and a similar patch provided by
+G. Paul Ziemba <pz-aqbanking-user@ziemba.us>.
+
+From: Elias Oltmanns <eo@nebensachen.de>
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2326 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-07-03 11:32:19 +0000 martin
+Rely on GWEN_Buffer_AllocRoom() to get things right
+Checks for overflow and provision for an extra null character are
+taken care of in one place and the caller should rely on that.
+
+From: Elias Oltmanns <eo@nebensachen.de>
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2325 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-07-03 11:32:11 +0000 martin
+Address some confusion about the terminating null character on buffer resize.
+From: Elias Oltmanns <eo@nebensachen.de>
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2324 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-07-03 11:32:04 +0000 martin
+Fix enforcement of read-only attribute in operations on Gwen buffers.
+From: Elias Oltmanns <eo@nebensachen.de>
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2323 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-07-03 11:31:56 +0000 martin
+Make sure that GWEN_Memory_malloc() never returns NULL.
+From: Elias Oltmanns <eo@nebensachen.de>
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2322 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-07-03 11:28:09 +0000 martin
+Typemaker2: Improved generating of APIDOC.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2321 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-07-03 11:28:00 +0000 martin
+Added functions GWEN_SyncIo_Helper_PartiallyReadFile() and GWEN_SyncIo_Helper_ReadFile()
+Partially or completely reading a file is quite often needed, so we now have
+functions for that in GWEN.
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2320 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-07-03 11:27:49 +0000 martin
+Fixed the description of GWEN_Text_NumToString() and GWEN_Text_StringToDouble()
+Actually, we use the locale "C" for number conversion, so the komma is
+represented as a decimal point ("."), not as a komma.
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2319 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-07-03 11:27:42 +0000 martin
+Added functions GWEN_StringListEntry_SetData() and GWEN_StringList_FindStringEntry()
+Actually, GWEN_StringListEntry_SetData() already was declared but not
+implemented.
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2318 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-05-30 19:27:34 +0000 martin
+Typemaker2: Fixed a bug in virtual function creator.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2317 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-05-21 18:41:04 +0000 martin
+Elias Oltmanns: Use the right key size when the modulus of RSA keys is not divisible by 8.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2316 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-04-24 19:53:38 +0000 christian
+Add first initial checking of the "destFolder" argument
+The cmdline argument was added in r1684, but never read so far.
+Even though it is now read for writing the .tm2 files, it
+is not yet regarded for the actual *.h/*.c files.
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2315 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-04-19 22:41:13 +0000 martin
+Added .gitignore for new parser folder.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2314 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-04-19 22:41:06 +0000 martin
+Simplified code for new parser.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2313 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-04-19 22:40:56 +0000 martin
+Started working on a generic parser.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2312 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-04-17 21:16:00 +0000 martin
+"des_" API is deprecated, changed to "DES_".
+Thanks to Henning Brauer from BS Web Services GmbH.
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2311 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-04-17 21:15:53 +0000 martin
+Prepared release 4.12.0beta.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2310 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-04-17 21:15:46 +0000 martin
+Added function GWEN_Url_toUiShortString().
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2309 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-04-15 21:42:11 +0000 martin
+Fixed a bug in quarter year calculations.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2308 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-04-07 18:08:31 +0000 martin
+Prepared release 4.11.1beta.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2307 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-04-06 08:40:58 +0000 christian
+Fix GWEN_FORMAT macro: Empty macro must still consume the arguments, otherwise we get a syntax error.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2306 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-04-06 08:25:06 +0000 christian
+Disable the __attribut__ format for mingw32 build.
+This broke the gnucash native mingw32 build, see
+https://github.com/Gnucash/gnucash/commit/4e5e0621322147ff6ada9d72ace36e213dec61c7
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2305 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-03-31 21:52:44 +0000 martin
+Fixed a memory leak.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2304 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-03-31 21:52:22 +0000 martin
+Prepared release 4.11.0beta.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2303 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-03-01 19:12:49 +0000 martin
+CGui: Always allow the user to abort an input dialog (Elias Oltmanns)
+This patch simply rearranges some code in GWEN_Gui_CGui__input()
+mainly in order to move the handler for user initiated abortion
+outside the buffer-not-full condition. Not a single line of new code
+is added, but two levels of if-else-nesting are removed into the
+bargain.
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2302 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-03-01 19:12:42 +0000 martin
+CGui: Add character conversion to the inputBox() routine (Elias Oltmanns)
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2301 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-03-01 19:12:34 +0000 martin
+Added patches/ folder to .gitignore.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2300 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-03-01 19:12:28 +0000 martin
+Partially undid last commit.
+We don't want to incompatibly change the API just yet.
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2299 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-03-01 19:12:19 +0000 martin
+Apply character conversion during command line argument parsing (Elias Oltmanns)
+In actual fact, character conversion will only be applied if
+GWEN_Args_Check() is called after the gui has been properly
+initialised. This means that the arguments parsed beforehand (e.g. in
+order to influence gui-parameters) had better not be affected by
+character conversion in the first place.
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2298 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-03-01 19:12:11 +0000 martin
+Gui: Adopt a more consistent approach to character conversion (Elias Oltmanns)
+Ideally, all direct output to and input from the standard streams
+should be handled consistently with regard to character conversion.
+This patch manages to achieve this goal for all output through the
+CGui callbacks. Moreover, it provides the means for a follow-up patch
+to apply character conversion during command line argument parsing.
+Non-canonical input, though, is a different story and will require
+extra code.
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2297 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-03-01 19:12:01 +0000 martin
+Make GWEN_StringList_Sort() compliant with the documented behaviour (Elias Oltmanns)
+Contrary to the documentation in stringlist.h, GWEN_StringList_Sort()
+used to sort in ascending order when the argument ascending was *not*
+set, and vice versa. This bug has been (partially) masked by the fact,
+that sorting was broken, anyway, due to incorrect book keeping with
+regard to the number of list elements and inappropriate integer
+sorting functions.
+
+This change will likely require adjustments to code in other
+applications and libraries, e.g. AqBanking. Unfortunately, a simple
+0/1 swap of the ascending parameter will not do because the bug
+evidently did not occur consistently.
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2296 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-03-01 19:11:53 +0000 martin
+Fix various hiccups in stringlist handling (Elias Oltmanns)
+- Do the right book keeping when inserting new entries or clearing the
+  list.
+- Remove an erroneous assertion in GWEN_StringList_RemoveString().
+- Make integer sorting functions actually fit for qsort().
+- Make GWEN_StringList_Sort() slightly more efficient and arguably
+  easier to read.
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2295 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-03-01 19:11:45 +0000 martin
+Fix assertions in syncio_file.c (Elias Oltmanns)
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2294 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-03-01 19:11:37 +0000 martin
+Safe guard against invalid argument to GWEN_Date_GetThisMonthEnd() (Elias Oltmanns)
+The compiler warns about the use of a possibly uninitialised variable.
+Since this function is part of the public API, sane arguments can,
+indeed, not be taken for granted and precautionary steps are in order.
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2293 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-03-01 19:11:29 +0000 martin
+Fix several memory leaks (Elias Oltmanns)
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2292 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-03-01 19:11:17 +0000 martin
+Make GWEN_Memory_realloc() robust in the case of shrinking (Elias Oltmanns)
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2291 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-03-01 19:10:59 +0000 martin
+Fix memory handling when allocating fastbuffers.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2290 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-03-01 18:51:52 +0000 martin
+Remove an instance of a double free.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2289 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-01-26 14:29:07 +0000 martin
+Prepared release 4.10.0beta.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2288 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-01-26 14:29:03 +0000 martin
+Added functions GWEN_PathManager_InsertRelPath() and GWEN_PluginManager_InsertRelPath()
+These functions insert relative paths for plugins. We need this for the
+latest change in AqBanking to allow for separation of plugins per library.
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2287 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-01-26 14:28:56 +0000 martin
+Added a clarifying remark.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2286 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-01-24 19:17:20 +0000 mlenk
+Reverting previous revision 2284
+... preparing another approach.
+
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2285 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-01-19 20:19:47 +0000 mlenk
+Add function GWEN_Register_App_Plugin_Dir()
+This function allows the calling application to register an explicit
+directory that is scanned for plugins before all other (default)
+locations when GWEN_Init() is called.
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2284 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-01-12 21:41:29 +0000 christian
+Minor decrease of verbosity: Display the 'plugin has no i18n domain' text as notice, not as warning, to avoid distractions here
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2283 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2014-01-07 21:38:12 +0000 martin
+SSL: Disabled new cipher selection code for now, needs further testing.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2282 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2013-12-29 21:48:28 +0000 martin
+Prepared 4.9.0beta.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2281 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2013-11-30 20:07:53 +0000 martin
+TLS: Added flags to force unsafe ciphers.
+Unfortunately it is necessary to offer only "SECURE128" ciphers to the
+Netbank server, otherwise it chooses a safe cipher but fails when something
+is actually sent via the connection.
+
+This needs to be added to AqHBCI as well.
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2280 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2013-11-30 17:42:38 +0000 martin
+TLS: Improved cipher handling
+The environment variable "GWEN_TLS_CIPHER_PRIORITIES" is now used as is.
+Only if this var is not set a default handling is used.
+
+This allows connecting to Netbank/Sparda servers.
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2279 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2013-11-26 23:54:41 +0000 martin
+TLS: Fixed another problem.
+The string
+ "SECURE256:SECURE128:-ARCFOUR-128:-AES-128-CBC:-CAMELLIA-128-CBC:-3DES-CBC"
+makes it impossible to connect to postbank.de. For whatever reason Postbank
+tries to enforce ARCFOUR-128 when given the opportunity to use a 128 bit
+algo, despite the fact that our list starts with SECURE256...
+
+Removing "SECURE128" leaves Postbank only the option to use a 256 bit algo,
+and that works.
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2278 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2013-11-26 23:54:37 +0000 martin
+Increased verbosity.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2277 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2013-11-26 23:38:46 +0000 martin
+Added flags to force only safe TLS ciphers.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2276 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2013-11-26 23:31:13 +0000 martin
+TLS: Added flag GWEN_SYNCIO_TLS_FLAGS_ONLY_SAFE_CIPHERS
+If this flag is set then ciphers known as unsafe will be disabled in the
+cipher priority list.
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2275 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2013-11-26 22:36:44 +0000 martin
+TLS: Fixed a type.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2274 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2013-11-26 22:36:39 +0000 martin
+TLS: Show more session info.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2273 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2013-11-26 22:08:14 +0000 martin
+TLS: Show session info.
+Maybe we might later add a warning for insecure ciphers...
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2272 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2013-11-26 21:25:36 +0000 martin
+TLS: Changed acceptable cipher list.
+The secure cipher lists don't work with some banks.
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2271 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2013-11-26 21:25:32 +0000 martin
+Show the ciphers used.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2270 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2013-11-26 21:25:26 +0000 martin
+Decreased verbosity.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2269 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2013-11-25 19:44:15 +0000 martin
+For GnuTLS >=3.2.4 insert "PFS" before "SECURE256".
+Followed a suggestion from Martin (MK).
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2268 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2013-11-25 08:20:31 +0000 mlenk
+Improve GnuTLS cipher settings
+- make cipher string a #define in syncio_tls_p.h
+- add facility to override cipher settings via environment variable GWEN_TLS_CIPHER_PRIORITIES
+- construct Force-SSLv3 cipher by adding prefix "+VERS-SSL3.0:"
+
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2267 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2013-11-24 00:02:08 +0000 martin
+Added explanation and changed gnutls version check.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2266 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2013-11-23 12:04:15 +0000 martin
+Fixed a typo, according to MK.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2265 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2013-11-18 20:52:34 +0000 martin
+Fix build issues with mingw with recent MinGW versions.
+Patch supplied by "geert".
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2264 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2013-11-18 19:50:55 +0000 martin
+Tried removing unsafe ciphers.
+Applied a modification of a patch submitted by MK.
+
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2263 70169cfe-8b10-0410-8925-dcb4b91034d8
+
+------------------------------------------------------------------
+2013-10-28 20:16:04 +0000 martin
+Added (deactivated) code to use ca-certificates from target system.
+git-svn-id: https://devel.aqbanking.de/svn/gwenhywfar/trunk@2262 70169cfe-8b10-0410-8925-dcb4b91034d8

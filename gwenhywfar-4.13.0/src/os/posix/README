@@ -1,0 +1,7 @@
+This folder contains system-dependant modules for POSIX systems.
+Supported systems are:
+ - Linux
+ - FreeBSD
+ - OpenBSD
+ - NetBSD
+ - BeOS
