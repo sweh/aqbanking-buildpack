@@ -17,9 +17,10 @@ echo "Temp dir: $temp_dir"
 echo "Downloading $aqbanking_tarball_url"
 curl -L $aqbanking_tarball_url | tar xzv
 
+
 (
 	cd aqbanking-${NGINX_VERSION}
-	./configure --prefix=/tmp/aqbanking
+	./configure --prefix=/tmp/aqbanking --with-gwen-dir=/app/gwenhywfar-4.13.0
     make
 	make install
 )
