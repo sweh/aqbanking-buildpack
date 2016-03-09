@@ -2,7 +2,8 @@
 
 set -e
 
-cp -r "aqbanking/" "$1/.aqbanking-buildpack"
+tar -zxf aqbanking.tar.gz -C "$1/"
+# cp -r "aqbanking/" "$1/.aqbanking-buildpack"
 echo "-----> aqbanking-buildpack: Installed aqbanking and libraries"
 
 cp "aqbanking-buildpack-defaults.sh" "$1/.profile.d/"
