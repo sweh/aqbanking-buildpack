@@ -8,10 +8,10 @@ aqbanking_tarball_url='http://www.aquamaniac.de/sites/download/download.php?pack
 
 
 echo "Serving files from /tmp on $PORT"
-cd /tmp
-mkdir aqbanking
+mkdir -p .aqbanking-buildpack
 python -m SimpleHTTPServer $PORT &
 
+cd /tmp
 #cd $temp_dir
 #echo "Temp dir: $temp_dir"
 
@@ -29,27 +29,27 @@ curl -L $aqbanking_tarball_url | tar xzv
 
 
 cd /tmp/xmlsec1-1.2.20
-./configure --prefix=/tmp/aqbanking/xmlsec1
+./configure --prefix=/app/.aqbanking-buildpack/xmlsec1
 make
 make install
 
 cd /tmp/gmp-4.3.2
-./configure --prefix=/tmp/aqbanking/gmp
+./configure --prefix=/app/.aqbanking-buildpack/gmp
 make
 make install
 
 cd /tmp/gwenhywfar-4.13.1
-./configure --prefix=/tmp/aqbanking/gwenhywfar --with-guis=
+./configure --prefix=/app/.aqbanking-buildpack/gwenhywfar --with-guis=
 make
 make install
 
 cd /tmp/aqbanking-5.5.1
-XMLSEC_CFLAGS="$(/bin/bash /tmp/aqbanking/xmlsec1/bin/xmlsec1-config --cflags)" XMLSEC_LIBS="$(/bin/bash /tmp/aqbanking/xmlsec1/bin/xmlsec1-config --libs)" ./configure --prefix=/tmp/aqbanking/aqbanking --with-gwen-dir=/tmp/aqbanking/gwenhywfar gmp_libs="-L/tmp/aqbanking/gmp/lib -lgmp" CPPFLAGS="-I/tmp/aqbanking/gmp/include"
+XMLSEC_CFLAGS="$(/bin/bash /app/.aqbanking-buildpack/xmlsec1/bin/xmlsec1-config --cflags)" XMLSEC_LIBS="$(/bin/bash /app/.aqbanking-buildpack/xmlsec1/bin/xmlsec1-config --libs)" ./configure --prefix=/app/.aqbanking-buildpack/aqbanking --with-gwen-dir=/app/.aqbanking-buildpack/gwenhywfar gmp_libs="-L/app/.aqbanking-buildpack/gmp/lib -lgmp" CPPFLAGS="-I/app/.aqbanking-buildpack/gmp/include"
 make
 make install
 
-tar -czf /tmp/aqbanking.tar.gz /tmp/aqbanking
-mv /tmp/aqbanking.tar.gz /tmp/aqbanking/
+cd /app/
+tar -czf .aqbanking-buildpack
 
 while true
 do
