@@ -1,0 +1,588 @@
+------------------------------------------------------------------
+2014-11-11 22:41:16 +0100 Martin Preuss
+Reworked SWIFT MT940 parser.
+The Netbank/Sparda server is extremely nasty: The FinTS specs state, that
+a new SEPA identifier must start in a new SWIFT subfield ("?20" etc).
+However, this server just sends the SEPA multiple tags like "EREF+" et al
+within a single subfield, so our parser, adhering to the specs, can't parse
+the purpose string from this server...
+
+The next step will have to be to just concatenate all purpose-related subfields
+and try to read those SEPA tags from a single line. This is extremely ugly,
+and it will also significantly slow down the parser, and all that because
+those banking IT guys can't adhere to the specs which are extremely clean
+regarding this point...
+
+------------------------------------------------------------------
+2014-11-11 22:06:00 +0100 Martin Preuss
+SWIFT Parser: Removed old code.
+
+------------------------------------------------------------------
+2014-08-19 21:54:10 +0200 Rudi Weiner
+Add HKDAL in aqbanking-cli
+
+------------------------------------------------------------------
+2014-10-08 20:42:48 +0200 Christian Stimming
+Extend aqhbci-tool "listaccounts" to optionally also show subAccountId and UniqueId.
+
+------------------------------------------------------------------
+2014-10-06 20:49:29 +0200 Christian Stimming
+Fix erroneous double-free when aborting the multijobs.
+
+------------------------------------------------------------------
+2014-09-27 23:30:01 +0200 Christian Stimming
+Code refactoring: Cover multi-transfers and multi-debitnotes by the same command implementation.
+The actual source code differences were really only the
+AB_JobSepa** creation call, so this could easily be merged into
+one command implementation.
+
+------------------------------------------------------------------
+2014-09-26 23:06:36 +0200 Christian Stimming
+Improve error handling in sepadebitnotes: Parse through all transactions, showing all errors, and only abort before actually executing.
+
+------------------------------------------------------------------
+2014-09-26 22:58:37 +0200 Christian Stimming
+Fix wrong check of IBAN codes: A failed checksum check was errorneously ignored.
+
+------------------------------------------------------------------
+2014-09-24 22:12:34 +0200 Christian Stimming
+Fix default profileName of sepadebitnotes. Fix documentation string.
+Pointed out by Claus-Justus Heine <himself@claus-justus-heine.de>.
+
+------------------------------------------------------------------
+2014-09-23 22:34:50 +0200 Christian Stimming
+Add option in sepadebitnotes to use COR1 version in multi debit note job.
+
+------------------------------------------------------------------
+2014-09-23 22:32:46 +0200 Christian Stimming
+Minor refactoring: Merge almost identical command calling code into one file and an extra function argument.
+
+------------------------------------------------------------------
+2014-09-23 11:57:58 +0200 Micha Lenk
+Small corrections in German translation
+This was originally reported as Debian bug #762374
+by Mechtilde <ooo@mechtilde.de>.
+
+https://bugs.debian.org/762374
+
+------------------------------------------------------------------
+2014-09-22 23:03:37 +0200 Christian Stimming
+Fix command line help: Let all commands appear as help text. Sort help and commands in identical order.
+
+------------------------------------------------------------------
+2014-09-21 22:25:58 +0200 Christian Stimming
+Add useful error message if profile file cannot be parsed.
+
+------------------------------------------------------------------
+2014-08-30 11:56:36 +0200 Martin Preuss
+Updated German bankinfo files.
+
+------------------------------------------------------------------
+2014-08-20 21:44:21 +0200 Martin Preuss
+Administrative changes: Shorten paths of some AqHBCI files.
+"tar" has a filename limit of 99, so we need to shorten the total path,
+otherwise "make dist" will fail.
+
+------------------------------------------------------------------
+2014-08-19 21:13:17 +0200 Martin Preuss
+Merge branch 'master' of https://git.aqbanking.de/git/aqbanking
+
+------------------------------------------------------------------
+2014-08-19 21:08:20 +0200 Martin Preuss
+SEPA exporter: Changed default for "singleBookingWanted" to 1
+One user reported that the current default of 0 doesn't work.
+
+------------------------------------------------------------------
+2014-08-15 13:28:43 +0200 Elias Oltmanns
+AqHBCI: Parse credit card transactions more liberally.
+
+------------------------------------------------------------------
+2014-08-15 19:00:10 +0200 martin
+Test, please ignore.
+
+------------------------------------------------------------------
+2014-08-12 23:24:53 +0200 Martin Preuss
+Added some entries to the TODO list.
+
+------------------------------------------------------------------
+2014-08-12 21:49:37 +0200 Martin Preuss
+aqbanking-tool: Mention the sepatransfers command (Holger Hans Peter Freyther)
+
+------------------------------------------------------------------
+2014-08-12 21:07:44 +0200 Martin Preuss
+Prepared GIT-release for Andreas.
+
+------------------------------------------------------------------
+2014-08-12 21:04:19 +0200 Martin Preuss
+Removed some duplicate fields from AB_TRANSACTION. - mandateReference (replaced by mandateId) - creditorIdentifier (replaced by creditorSchemeId)
+
+------------------------------------------------------------------
+2014-08-04 22:21:23 +0200 Martin Preuss
+aqbanking-cli: Added new requst type "sepaSto" for SEPA standing orders.
+
+------------------------------------------------------------------
+2014-08-04 22:20:57 +0200 Martin Preuss
+AqHBCI: More work on AH_Job_SepaStandingOrdersGet.
+
+------------------------------------------------------------------
+2014-08-04 22:20:29 +0200 Martin Preuss
+AqHBCI: Fixed XML definition for JobSepaStandingOrderGet.
+
+------------------------------------------------------------------
+2014-08-03 23:14:31 +0200 Martin Preuss
+AqHBCI: Fixed a typo.
+
+------------------------------------------------------------------
+2014-08-03 23:14:19 +0200 Martin Preuss
+Added new CMAKE files to .gitignore.
+
+------------------------------------------------------------------
+2014-08-03 23:07:16 +0200 Martin Preuss
+Added CMake package configuration files
+Makes live for cmake users a lot easier.
+
+It is not platform idependent as the library extension .so is hard
+coded.
+
+Signed-off-by: Martin Preuss <martin@aquamaniac.de>
+
+------------------------------------------------------------------
+2014-08-03 19:17:42 +0200 Martin Preuss
+AqHBCI: Started working on job SepaGetStandingOrders.
+
+------------------------------------------------------------------
+2014-08-03 19:16:59 +0200 Martin Preuss
+AqBanking: Added job SepaGetStandingOrders.
+Also added handling for some other jobs in AB_Job_Type2Char() and
+AB_Job_Type2LocalChar().
+
+------------------------------------------------------------------
+2014-08-02 18:24:36 +0200 Martin Preuss
+Added test-driver to .gitingore.
+
+------------------------------------------------------------------
+2014-08-02 18:24:05 +0200 Martin Preuss
+Force IBAN and BIC for SEPA transfers and debit notes.
+The group "kti_i" his quite vague, it allows for either national or
+international specification of the local bank account, the parser can't handle
+that too well. Some jobs need SEPA info (e.g. the SEPA transfer jobs), and
+for those the parser should fail if IBAN or BIC are missing.
+
+------------------------------------------------------------------
+2014-08-02 18:21:35 +0200 Martin Preuss
+Fixed a typo.
+
+------------------------------------------------------------------
+2014-08-02 18:21:27 +0200 Martin Preuss
+Added compile to .gitignore.
+
+------------------------------------------------------------------
+2014-07-15 22:52:17 +0200 Martin Preuss
+Ok, one more test for the email notifier...
+At least this one informs me about changed to the GIT repository.
+Maybe I will change later to git-multimail...
+
+------------------------------------------------------------------
+2014-07-15 22:34:48 +0200 Martin Preuss
+Last test for today...
+
+------------------------------------------------------------------
+2014-07-15 22:31:08 +0200 Martin Preuss
+Test5.
+
+------------------------------------------------------------------
+2014-07-15 22:28:54 +0200 Martin Preuss
+Test4...
+
+------------------------------------------------------------------
+2014-07-15 22:24:55 +0200 Martin Preuss
+Test3...
+
+------------------------------------------------------------------
+2014-07-15 22:20:07 +0200 Martin Preuss
+Test...
+
+------------------------------------------------------------------
+2014-07-15 21:31:10 +0200 Martin Preuss
+Test...
+
+------------------------------------------------------------------
+2014-07-03 11:45:41 +0000 martin
+SEPA exporter: Fix some memory leaks.
+From: Elias Oltmanns <eo@nebensachen.de>
+
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2595 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-07-03 11:44:30 +0000 martin
+SEPA exporter: Enforce explicit setting of sequence type for debit notes.
+From: Elias Oltmanns <eo@nebensachen.de>
+
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2594 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-07-03 11:43:17 +0000 martin
+SEPA exporter: Eliminate reference to uninitialised variable.
+From: Elias Oltmanns <eo@nebensachen.de>
+
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2593 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-06-15 20:11:18 +0000 mlenk
+aqbanking-cli: Fix parameters for calling AH_Provider_SendDtazv from libaqhbci
+The parameter 'withProgress' were added to function AH_Provider_SendDtazv in
+SVN revision 1860. Prior to this change the function used a hard-coded 1
+instead of the new parameter. So I figured that 1 is the correct value to
+restore the behavior prior to rev. 1860. This fixes the compiler error
+intentionally introduced by the previous commit.
+
+This fixes a regression that was introduced in SVN revision 1860 and that was
+discovered thanks to Michael Tautschnig <mt@debian.org> reporting Debian bug
+#750046 ( http://bugs.debian.org/750046 ).
+
+
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2592 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-06-15 19:43:17 +0000 mlenk
+Fix conflicting declarations of function AH_Provider_SendDtazv
+aqbanking-cli used a local declaration of function AH_Provider_SendDtazv that
+is used at compile time. It shadows the real one from libaqhbci that is used at
+link time. This would not matter if the types of both functions match, but they
+do not match.
+
+I fixed this by dumping the local declaration in aqbanking-cli. Instead I
+included the ones from libaqhbci that are also used at linktime. This will now
+cause a compile error because the function paramter counts differ.
+
+Thanks to Michael Tautschnig <mt@debian.org> for discovering and reporting this
+issue in Debian bug #750046, see http://bugs.debian.org/750046 .
+
+
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2591 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-06-08 20:22:55 +0000 mlenk
+Update Subversion's svn:ignore attributes
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2590 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-29 15:55:59 +0000 martin
+SWIFT parser: Ignore doc tag 21 when content is "NONREF"(by Ludolf Holzheid)
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2589 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-23 20:20:39 +0000 martin
+AqHBCI-Tool4: Add user as an option to the sendkeys command (Elias Oltmanns).
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2588 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-23 20:16:43 +0000 martin
+AqHBCI: Make sure that the size (in bits) of RDH-10 keys is a multiple of 8 (Elias Oltmanns).
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2587 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-21 19:09:06 +0000 martin
+AqHBCI: Fixed previous patch.
+Previous 4 patches provided by Elias Oltmanns (need to find a way to easily
+put the real patch author in SVN logs when using "git svn").
+
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2586 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-21 19:07:54 +0000 martin
+AqHBCI: Generate RDH-10 keys of the same size as the server's keys.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2585 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-21 19:06:43 +0000 martin
+SEPA exporter: Avoid unjustified usage of callbacks (portability issues).
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2584 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-21 19:05:32 +0000 martin
+Keep the logic for choosing teh right SEPA profile inside AqHBCI.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2583 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-21 19:04:07 +0000 martin
+Fix usage of GWEN_Text_ComparePattern().
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2582 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-19 17:07:06 +0000 martin
+Increased log output in AH_Job_GetAccountSepaInfo_Process()
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2581 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 14:29:34 +0000 martin
+Do not accept lower case letters in BIC.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2580 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 14:28:23 +0000 martin
+AqHBCI: Do not free AH_JOBs as long as there are AB_JOBs linked to them.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2579 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 14:27:11 +0000 martin
+AqHBCI: Properly exchange results of SEPA multi jobs.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2578 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 14:24:16 +0000 martin
+Add support for IBAN only transactions.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2577 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 14:22:59 +0000 martin
+AqHBCI: Fix a typo and some comments in the xml file for COR1 single debitnotes.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2576 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 14:21:47 +0000 martin
+AqHBCI: Actually use the flag AH_BANK_FLAGS_SEPA_PREFER_SINGLE_DEBITNOTE.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2575 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 14:20:35 +0000 martin
+AqHBCI: Add support for SEPA multi transfers.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2574 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 14:19:19 +0000 martin
+AqHBCI: Some jobs listed in the bpd may still be disabled on specific accounts.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2573 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 14:18:07 +0000 martin
+Handle batch booking requests for SEPA jobs.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2572 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 14:16:52 +0000 martin
+AqHBCI: Simply look up multi-jobs by their job names
+Since the SEPA exporter now graciously handles batches of
+transactions, the algorithm on the job level can be significantly
+simplified. In fact, the same rules apply to SEPA and traditional
+multi-jobs now.
+
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2571 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 14:15:39 +0000 martin
+SEPA exporter: Extend support for multi jobs and eliminate some pitfalls
+Implements support for multiple Payment Information blocks per
+generated pain message. In particular, only transactions with a
+matching set of the relevant data are stored in a single Payment
+Information block now. Previously, the whole batch of transactions
+used to be grouped under a single Payment Information block, thus
+accidentally "inheriting" features like the Sequence Type or Creditor
+Scheme Id from the first transaction of the batch.
+
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2570 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 14:14:23 +0000 martin
+AqHBCI: Make the handling of SEPA formats user configurable
+This approach involves a new priority option in the profiles of the
+SEPA ImExporter. The default configuration gives preference to the
+highest supported variant of a SEPA format, that is to say,
+pain.001.003.03 will trump pain.001.002.03 if both are available.
+
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2569 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 14:13:02 +0000 martin
+SEPA exporter: Further reduce code duplication.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2568 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 14:11:50 +0000 martin
+SEPA exporter: Make the choice between CORE and COR1 a profile option.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2567 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 14:10:37 +0000 martin
+SEPA exporter: Unify interface to pain.001.00x.0y documents
+This time, the code handling credit transfer initiation messages has
+been consolidated. Profiles (including the default profile) have been
+updated to match the new scheme. The ccm profile, which used to be
+duplicated by the default profile, really, has been renamed according
+to the variant and version of pain messages it produces.
+
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2566 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 14:09:05 +0000 martin
+SEPA exporter: Unify interface to pain.008.00x.0y documents
+In an attempt to reduce code duplication in order to make it easier to
+maintain, all functions creating pain.008 messages are merged into
+one. Also, profiles are extended and shall make the code more
+flexible, eventually.
+
+The cor1 variants of the profiles below 008.003.02 are discarded since
+the COR1 option has been defined in pain.008.003.02 for the first
+time.
+
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2565 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 14:07:10 +0000 martin
+SEPA exporter: Specify CtrlSum in GrpHdr too when generating pain documents.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2564 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 14:05:58 +0000 martin
+SEPA exporter: Let ccm produce valid XML documents again
+This reverts revision 2337: "Try another header for XML file..." and
+adds another minor change in order to produce valid XML documents.
+
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2563 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 14:04:47 +0000 martin
+CSV ImExporter: Fix typo in sepadebitnotes profile.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2562 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 14:03:34 +0000 martin
+AqBanking-CLI: Even if account list holds 0 elements, it has to be freed.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2561 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 14:02:21 +0000 martin
+A few more superfluous assertions.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2560 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 14:01:04 +0000 martin
+Added a comment.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2559 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-17 13:59:51 +0000 martin
+Prepared release 5.5.0beta.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2558 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-01 17:26:06 +0000 martin
+AqHBCI: Improved logging.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2557 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-05-01 17:24:47 +0000 martin
+AqHBCI: Fixed a bug in current flicker code handling
+"challengeHHD" should be a normal string, so there is no need to
+translate it into a hex string for storage.
+
+Also, the HHD code doesn't expect hex strings...
+
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2556 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-04-27 11:44:35 +0000 martin
+aqbanking-cli: Added command "sepaflashdebitnote"
+This uses the new job "SEPA Flash Debit Note".
+
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2555 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-04-26 12:48:12 +0000 martin
+AqHBCI: Implemented AB_Job_TypeSepaFlashDebitNote.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2554 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-04-26 12:46:58 +0000 martin
+Introduced new job type for fast SEPA debit notes.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2553 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-04-24 20:31:21 +0000 martin
+AqHBCI: Introduced flags AH_BANK_FLAGS_SEPA_PREFER_SINGLE_(TRANSFER|DEBITNOTE)
+Those flags do for SEPA transactions what AH_BANK_FLAGS_PREFER_SINGLE_(TRANSFER|DEBITNOTE)
+do for normal transactions.
+
+Added handling of those new flags to HBCI account edit dialog.
+
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2552 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-04-24 19:52:46 +0000 martin
+AqBanking-CLI: Added command "sepatransfers".
+This was not the patch provided by Wolfgang Hamann, but instead I used the
+command "sepaDebitNotes" as a template.
+
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2551 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-04-17 21:45:20 +0000 martin
+Prepared release 5.4.3beta.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2550 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-04-02 15:33:02 +0000 martin
+Aqbanking-cli: Needed to fix the argument type
+We now use char because the period type is expected to be a string.
+
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2549 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-03-30 20:03:41 +0000 martin
+Prepared release 5.4.2beta.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2548 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-03-30 00:10:53 +0000 martin
+CSV: Added a profile for SEPA debit notes.
+This profile can be used to import SEPA debit notes to be send to a bank.
+
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2547 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-03-25 21:58:38 +0000 martin
+CSV-ImExporter: Added SEPA debit note fields to "full" profile.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2546 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-03-25 21:51:24 +0000 martin
+AqBanking-CLI: Added command "sepadebitnotes"
+This command reads multiple debit notes from a file.
+
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2545 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-03-25 21:49:57 +0000 martin
+AqBanking-CLI: Fixed a typo.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2544 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-03-24 21:45:23 +0000 martin
+AqHBCI: Started supporting COR1 SEPA debit notes.
+Those new jobs aren't used ATM, we still have to figure out a way to select
+this type of jobs.
+
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2543 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-03-02 14:49:50 +0000 martin
+Prepared release 5.4.1beta.
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2542 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-03-01 20:23:13 +0000 martin
+AqBanking-CLI: No need to check local BIC twice (Elias Oltmanns)
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2541 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-03-01 20:22:01 +0000 martin
+AqBanking-CLI: Drop redundant if clauses (Elias Oltmanns)
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2540 5c42a225-8b10-0410-9873-89b7810ad06e
+
+------------------------------------------------------------------
+2014-03-01 20:20:49 +0000 martin
+AqBanking-CLI: Allow 97 through 99 as "day of month" for standing orders (Elias Oltmanns)
+According to the HBCI specs, these values refer to the last three days
+of a month respectively.
+
+git-svn-id: https://devel.aqbanking.de/svn/aqbanking/trunk@2539 5c42a225-8b10-0410-9873-89b7810ad06e
