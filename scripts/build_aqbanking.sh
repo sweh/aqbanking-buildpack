@@ -50,7 +50,7 @@ make
 make install
 
 cd /app/
-tar -czf .aqbanking-buildpack
+tar -czf aqbanking.tar.gz .aqbanking-buildpack
 
 while true
 do
