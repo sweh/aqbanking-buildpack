@@ -4,19 +4,7 @@ set -e
 
 mkdir -p "$1/bin/"
 
-cp "aqbanking/bin/aqbanking-cli" "$1/bin/aqbanking-cli"
-echo "-----> aqbanking-buildpack: Installed aqbanking-cli to app/bin"
-
-cp "aqbanking/bin/aqbanking-config" "$1/bin/aqbanking-config"
-echo "-----> aqbanking-buildpack: Installed aqbanking-config to app/bin"
-
-cp "aqbanking/bin/aqebics-tool" "$1/bin/aqebics-tool"
-echo "-----> aqbanking-buildpack: Installed aqebics-tool to app/bin"
-
-cp "aqbanking/bin/aqhbci-tool4" "$1/bin/aqhbci-tool4"
-echo "-----> aqbanking-buildpack: Installed aqhbci-tool4 to app/bin"
-
-cp "aqbanking/bin/hbcixml3" "$1/bin/hbcixml3"
-echo "-----> aqbanking-buildpack: Installed hbcixml3 to app/bin"
+cp -r "aqbanking" "$1"
+echo "-----> aqbanking-buildpack: Installed aqbanking to app/aqbanking"
 
 exit 0
