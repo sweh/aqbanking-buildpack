@@ -7,10 +7,11 @@ aqbanking_tarball_url='http://www.aquamaniac.de/sites/download/download.php?pack
 
 
 
-echo "Serving files from /tmp on $PORT"
-mkdir -p .aqbanking-buildpack
+echo "Serving files from /app on $PORT"
+cd /app
 python -m SimpleHTTPServer $PORT &
 
+mkdir -p /app/.aqbanking-buildpack
 cd /tmp
 #cd $temp_dir
 #echo "Temp dir: $temp_dir"
