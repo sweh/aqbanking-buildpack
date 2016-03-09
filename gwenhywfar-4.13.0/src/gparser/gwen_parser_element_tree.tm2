@@ -1,8 +1,0 @@
-<?xml?>
-
-<tm2>
-  <typedef id="GWEN_PARSER_ELEMENT_TREE" type="pointer" lang="c" extends="tree_base" basetype="GWEN_PARSER_ELEMENT">
-    <identifier>GWEN_PARSER_ELEMENT_TREE</identifier>
-    <prefix>GWEN_ParserElement_Tree</prefix>
-  </typedef>
-</tm2>
