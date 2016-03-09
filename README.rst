@@ -2,7 +2,7 @@
 Heroku Buildpack: aqbanking
 ===========================
 
-Buildpack vendoring [aqbanking](http://www.aquamaniac.de/sites/aqbanking/index.php)
+Buildpack vendoring aqbanking (http://www.aquamaniac.de/sites/aqbanking/index.php)
 inside a dyno.
 
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg
@@ -29,5 +29,4 @@ Setup
 
 Simply add this buildpack to your configured buildpacks::
 
-```bash
-$ heroku buildpacks:add https://github.com/sweh/aqbanking-buildpack.git
+    $ heroku buildpacks:add https://github.com/sweh/aqbanking-buildpack.git
