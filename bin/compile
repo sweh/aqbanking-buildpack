@@ -3,22 +3,20 @@
 set -e
 
 mkdir -p "$1/bin/"
-echo "-----> aqbanking-buildpack: Extracting aqbanking 5.5.1"
-tar -xvf "aqbanking-5.5.1.tar.gz" -C /
 
-cp -r "/tmp/aqbanking/xmlsec1/lib/*" "$1/.heroku/vendor/lib"
+cp -r "aqbanking/xmlsec1/lib/*" "$1/.heroku/vendor/lib"
 echo "-----> aqbanking-buildpack: Installed xmlsec1 libraries"
 
-cp -r "/tmp/aqbanking/gmp/lib/*" "$1/.heroku/vendor/lib"
+cp -r "aqbanking/gmp/lib/*" "$1/.heroku/vendor/lib"
 echo "-----> aqbanking-buildpack: Installed gmp libraries"
 
-cp -r "/tmp/aqbanking/gwenhywfar/lib/*" "$1/.heroku/vendor/lib"
+cp -r "aqbanking/gwenhywfar/lib/*" "$1/.heroku/vendor/lib"
 echo "-----> aqbanking-buildpack: Installed gwenhywfar libraries"
 
-cp -r "/tmp/aqbanking/aqbanking/lib/*" "$1/.heroku/vendor/lib"
+cp -r "aqbanking/aqbanking/lib/*" "$1/.heroku/vendor/lib"
 echo "-----> aqbanking-buildpack: Installed aqbanking libraries"
 
-cp -r "/tmp/aqbanking/aqbanking/bin/*" "$1/bin/"
+cp -r "aqbanking/aqbanking/bin/*" "$1/bin/"
 echo "-----> aqbanking-buildpack: Installed aqbanking binaries to app/bin/"
 
 exit 0

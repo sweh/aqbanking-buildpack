@@ -1,0 +1,26 @@
+# pkg-config configuration for gwenhywfar
+# For information about the syntax, see pkg-config(1)
+
+# General installation directories
+prefix=/tmp/aqbanking/gwenhywfar
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+pkgincludedir=${prefix}/include/gwenhywfar
+datarootdir=${prefix}/share
+datadir=${datarootdir}
+bindir=${exec_prefix}/bin
+sysconfdir=${prefix}/etc
+
+# Particular variables of gwenhywfar
+plugindir=${libdir}/gwenhywfar/plugins/60
+
+# Human-readable name
+Name: gwenhywfar
+# Human-readable description
+Description: A multi-platform helper library for other libraries
+
+Version: 4.13.1
+Libs: -L${libdir} -lgwenhywfar
+Cflags: -I${includedir}/gwenhywfar4
+
