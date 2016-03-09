@@ -6,9 +6,9 @@ aqbanking_tarball_url='http://www.aquamaniac.de/sites/download/download.php?pack
 
 
 
-#echo "Serving files from /tmp on $PORT"
+echo "Serving files from /tmp on $PORT"
 cd /tmp
-#python -m SimpleHTTPServer $PORT &
+python -m SimpleHTTPServer $PORT &
 
 #cd $temp_dir
 #echo "Temp dir: $temp_dir"
@@ -35,6 +35,13 @@ make install
 
 
 cd /tmp/aqbanking-5.5.1
+cp /app/scripts/aqbanking-configure configure
 ./configure --prefix=/tmp/aqbanking --with-gwen-dir=/tmp/gwenhywfar CPPFLAGS="-I/tmp/gmp/include"
 make
 make install
+
+while true
+do
+    sleep 1
+    echo "."
+done
