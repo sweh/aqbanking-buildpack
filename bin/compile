@@ -2,21 +2,10 @@
 
 set -e
 
-mkdir -p "$1/bin/"
+cp -r "aqbanking/" "$1/.aqbanking-buildpack"
+echo "-----> aqbanking-buildpack: Installed aqbanking and libraries"
 
-cp -r "aqbanking/xmlsec1/lib/" "$1/.heroku/vendor/lib"
-echo "-----> aqbanking-buildpack: Installed xmlsec1 libraries"
-
-cp -r "aqbanking/gmp/lib/" "$1/.heroku/vendor/lib"
-echo "-----> aqbanking-buildpack: Installed gmp libraries"
-
-cp -r "aqbanking/gwenhywfar/lib/" "$1/.heroku/vendor/lib"
-echo "-----> aqbanking-buildpack: Installed gwenhywfar libraries"
-
-cp -r "aqbanking/aqbanking/lib/" "$1/.heroku/vendor/lib"
-echo "-----> aqbanking-buildpack: Installed aqbanking libraries"
-
-cp -r "aqbanking/aqbanking/bin/" "$1/bin/"
-echo "-----> aqbanking-buildpack: Installed aqbanking binaries to app/bin/"
+cp "aqbanking-buildpack-defaults.sh" "$1/.profile.d/"
+echo "-----> aqbanking-buildpack: Updated environment"
 
 exit 0
