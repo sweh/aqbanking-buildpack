@@ -1,7 +1,13 @@
 CHANGELOG
 =========
 
-0.1 (unreleased)
+0.2 (unreleased)
+================
+
+- Nothing changed yet.
+
+
+0.1 (2016-03-09)
 ================
 
 - initial release
