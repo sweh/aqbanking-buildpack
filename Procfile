@@ -1,1 +1,1 @@
-web: scripts/build_aqbanking.sh
+web: scripts/serve_compiled_download.sh
