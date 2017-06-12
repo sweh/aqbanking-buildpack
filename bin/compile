@@ -26,6 +26,7 @@ gwenhywfar_tarball_url="https://www.aquamaniac.de/sites/download/download.php?pa
 aqbanking_tarball_url="http://www.aquamaniac.de/sites/download/download.php?package=03&release=208&file=01&dummy=aqbanking-$AQBANKING_VERSION.tar.gz"
 
 mkdir -p $1/download
+rm $1/download/*.tar.gz
 mkdir -p $1/.aqbanking-buildpack
 
 mkdir -p /tmp
