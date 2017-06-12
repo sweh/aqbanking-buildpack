@@ -17,12 +17,12 @@
 
 XMLSEC1_VERSION="1.2.24"
 GMP_VERSION="4.3.2"
-GWENHYWFAR_VERSION="4.15.3"
+GWENHYWFAR_VERSION="4.15.5beta"
 AQBANKING_VERSION="5.6.12"
 
 xmlsec1_tarball_url="http://www.aleksey.com/xmlsec/download/xmlsec1-$XMLSEC1_VERSION.tar.gz"
 gmp_tarball_url="http://ftp.gnu.org/gnu/gmp/gmp-$GMP_VERSION.tar.gz"
-gwenhywfar_tarball_url="http://www2.aquamaniac.de/sites/download/download.php?package=01&release=205&file=01&dummy=gwenhywfar-$GWENHYWFAR_VERSION.tar.gz"
+gwenhywfar_tarball_url="https://www.aquamaniac.de/sites/download/download.php?package=01&release=202&file=01&dummy=gwenhywfar-$GWENHYWFAR_VERSION.tar.gz"
 aqbanking_tarball_url="http://www.aquamaniac.de/sites/download/download.php?package=03&release=208&file=01&dummy=aqbanking-$AQBANKING_VERSION.tar.gz"
 
 mkdir -p $1/download
