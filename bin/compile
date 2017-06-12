@@ -1,16 +1,16 @@
-##!/usr/bin/env bash
-#
-#set -e
-#
-#tar -zxf aqbanking-5.6.12.tar.gz -C "$1/"
-#
-#echo "-----> aqbanking-buildpack: Installed aqbanking and libraries"
-#
-#cp "aqbanking-buildpack-defaults.sh" "$1/.profile.d/"
-#echo "-----> aqbanking-buildpack: Updated environment"
-#
-#exit 0
-#
+#!/usr/bin/env bash
+
+set -e
+
+tar -zxf aqbanking-$STACK.tar.gz -C "$1/"
+
+echo "-----> aqbanking-buildpack: Installed aqbanking and libraries"
+
+cp "aqbanking-buildpack-defaults.sh" "$1/.profile.d/"
+echo "-----> aqbanking-buildpack: Updated environment"
+
+exit 0
+
 
 #This step is needed to compile a new aqbaning version.
 #!/bin/bash
