@@ -1,15 +1,15 @@
-#!/usr/bin/env bash
-
-set -e
-
-tar -zxf aqbanking-$STACK.tar.gz -C "$1/"
-
-echo "-----> aqbanking-buildpack: Installed aqbanking and libraries"
-
-cp "aqbanking-buildpack-defaults.sh" "$1/.profile.d/"
-echo "-----> aqbanking-buildpack: Updated environment"
-
-exit 0
+##!/usr/bin/env bash
+#
+#set -e
+#
+#tar -zxf aqbanking-$STACK.tar.gz -C "$1/"
+#
+#echo "-----> aqbanking-buildpack: Installed aqbanking and libraries"
+#
+#cp "aqbanking-buildpack-defaults.sh" "$1/.profile.d/"
+#echo "-----> aqbanking-buildpack: Updated environment"
+#
+#exit 0
 
 
 #This step is needed to compile a new aqbaning version.
@@ -17,7 +17,7 @@ exit 0
 
 XMLSEC1_VERSION="1.2.24"
 GMP_VERSION="4.3.2"
-GWENHYWFAR_VERSION="4.17.0"
+GWENHYWFAR_VERSION="4.15.3"
 AQBANKING_VERSION="5.6.12"
 
 xmlsec1_tarball_url="http://www.aleksey.com/xmlsec/download/xmlsec1-$XMLSEC1_VERSION.tar.gz"
