@@ -50,5 +50,5 @@ make
 make install
 
 cd /app/
-tar -czf "aqbanking-$AQBANKING_VERSION-heroku-16.tar.gz" .aqbanking-buildpack
+tar -czf "aqbanking-$AQBANKING_VERSION.tar.gz" .aqbanking-buildpack
 mv "aqbanking-$AQBANKING_VERSION.tar.gz" download
