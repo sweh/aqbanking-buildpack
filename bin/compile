@@ -32,6 +32,7 @@ AQBANKING_VERSION="5.5.1"
 
 xmlsec1_tarball_url="http://www.aleksey.com/xmlsec/download/xmlsec1-$XMLSEC1_VERSION.tar.gz"
 gmp_tarball_url="http://ftp.gnu.org/gnu/gmp/gmp-$GMP_VERSION.tar.gz"
+gwenhywfar_tarball_url="http://www.sw83.de/misc/gwenhywfar-4.13.1.tar.gz"
 aqbanking_tarball_url="http://www.aquamaniac.de/sites/download/download.php?package=03&release=118&file=01&dummy=aqbanking-$AQBANKING_VERSION.tar.gz"
 
 mkdir -p $1/download
@@ -48,7 +49,7 @@ echo "Downloading $gmp_tarball_url"
 curl -L $gmp_tarball_url | tar xzv
 
 echo "Downloading $gwenhywfar_tarball_url"
-cat /app/gwenhywfar-$GWENHYWFAR_VERSION.tar.gz | tar xzv
+curl -L $gwenhywfar_tarball_url | tar xzv
 
 echo "Downloading $aqbanking_tarball_url"
 curl -L $aqbanking_tarball_url | tar xzv
