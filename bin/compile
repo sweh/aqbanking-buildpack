@@ -27,7 +27,7 @@
 
 XMLSEC1_VERSION="1.2.20"
 GMP_VERSION="4.3.2"
-GWENHYWFAR_VERSION="4.14.1"
+GWENHYWFAR_VERSION="4.13.1"
 AQBANKING_VERSION="5.5.1"
 
 xmlsec1_tarball_url="http://www.aleksey.com/xmlsec/download/xmlsec1-$XMLSEC1_VERSION.tar.gz"
