@@ -27,7 +27,7 @@
 
 XMLSEC1_VERSION="1.2.20"
 GMP_VERSION="4.3.2"
-GWENHYWFAR_VERSION="4.13.0"
+GWENHYWFAR_VERSION="4.13.1"
 AQBANKING_VERSION="5.5.1"
 
 xmlsec1_tarball_url="http://www.aleksey.com/xmlsec/download/xmlsec1-$XMLSEC1_VERSION.tar.gz"
@@ -48,7 +48,7 @@ echo "Downloading $gmp_tarball_url"
 curl -L $gmp_tarball_url | tar xzv
 
 echo "Downloading $gwenhywfar_tarball_url"
-cat $1/gwenhywfar-$GWENHYWFAR_VERSION.tar.gz | tar xzv
+cat /app/gwenhywfar-$GWENHYWFAR_VERSION.tar.gz | tar xzv
 
 echo "Downloading $aqbanking_tarball_url"
 curl -L $aqbanking_tarball_url | tar xzv
